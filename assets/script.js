@@ -108,7 +108,7 @@ $("#suggest-btn").click(function(){
     'fearful':0
   };
 
-  let max=0,exp="";
+  let max=0,exp="neutral";
   while(!q.isEmpty()){
     var curr_exp = q.dequeue()
     count[curr_exp] += 1;
@@ -117,17 +117,21 @@ $("#suggest-btn").click(function(){
       exp=curr_exp;
     }
   }
-  //var exp = _.max(Object.keys(count), o => count[o]);
 
-  console.log(exp);
+
   $.ajax({
     type:"get",
     url:`/expression/${exp}`,
     success:function(data){
-      console.log(data.data);
+      let gen=JSON.parse(data.data.genres);
+      let str="";
+      for(g of gen){
+        str+=g.name+" | ";
+      }
       $("#movie-image img").attr("src",data.data.poster);
-      $("#movie-desc-head").text(data.data.original_title);
+      $("#movie-desc-head").text(data.data.original_title+` (${data.data.release_date.slice(0,4)})`);
       $("#movie-desc-rating").text(data.data.vote_average);
+      $("#movie-desc-genre").text(str.slice(0,str.length-2));
       $("#movie-desc-overview").text(data.data.overview);
       $("#dropdown-content").css("display","block");
       $("#suggest-btn button").text("Suggest Another Movie");

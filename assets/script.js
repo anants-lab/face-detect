@@ -130,7 +130,7 @@ $("#suggest-btn").click(function(){
       }
       $("#movie-image img").attr("src",data.data.poster);
       $("#movie-desc-head").text(data.data.original_title+` (${data.data.release_date.slice(0,4)})`);
-      $("#movie-desc-rating").text(data.data.vote_average);
+      $("#movie-desc-rating").html(`<i class='fas fa-star'></i> ${data.data.vote_average}`);
       $("#movie-desc-genre").text(str.slice(0,str.length-2));
       $("#movie-desc-overview").text(data.data.overview);
       $("#dropdown-content").css("display","block");

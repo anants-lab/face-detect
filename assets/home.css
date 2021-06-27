@@ -6,7 +6,7 @@ body {
     align-items: center;
     background-color: #090D11;
     color:white;
-    font-family: sans-serif;
+    font-family:sans-serif;
 }
 
 canvas {
@@ -39,6 +39,8 @@ canvas {
     font-size:15px;
     border:none;
     padding:8px;
+    border-radius: 5px;
+    
 }
 
 #dropdown-content{

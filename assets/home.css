@@ -32,6 +32,44 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    margin-bottom: 20px;
 }
 
+#suggest-btn button{
+    font-size:15px;
+    border:none;
+    padding:8px;
+}
+
+#dropdown-content{
+    display:none;
+    margin-top:20px;
+}
+
+#recommends{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width:540px;
+}
+
+#recommended-movie{
+    display: flex;
+}
+#movie-image img{
+    width:150px;
+    margin-right:15px;
+}
+#movie-desc-container{
+    
+}
+#movie-desc-container p{
+    padding:0px;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+#movie-desc-head{
+    font-size: 18px; 
+    font-weight: bold;
+
+}

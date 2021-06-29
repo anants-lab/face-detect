@@ -50,6 +50,11 @@ app.get('/expression/:exp',function(req,res){
             });
         });
     }
+    else{
+        res.render("index.ejs");
+        return;
+    }
+    
     
 });
 

@@ -11,20 +11,21 @@ body {
 
 canvas {
     position: absolute;
-    overflow: hidden;
+    /* overflow: hidden; */
     
 }
 
-#main-header{
+#main-header h1{
+    
     text-align:center;
 }
 
 #mid-section{
-    height:100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
    margin-top: 30px;
+   height:auto;
 }
 
 #video-display{
@@ -33,6 +34,11 @@ canvas {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+}
+
+#video{
+    width:540px;
+    height:420px; 
 }
 
 #suggest-btn button{
@@ -46,32 +52,66 @@ canvas {
 #dropdown-content{
     display:none;
     margin-top:20px;
+    width:540px;
 }
 
 #recommends{
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width:540px;
+    
+}
+
+#recommends-header h2{
+    text-align: center;
 }
 
 #recommended-movie{
     display: flex;
+    margin-top:20px;
+    
 }
 #movie-image img{
     width:150px;
-    margin-right:15px;
+    margin-right:20px;
+
 }
 #movie-desc-container{
-    
+
 }
 #movie-desc-container p{
     padding:0px;
     margin: 0px;
     margin-bottom: 10px;
+    
 }
 #movie-desc-head{
     font-size: 18px; 
     font-weight: bold;
 
 }
+
+
+
+
+     
+
+@media screen and (max-width: 640px) {
+    #video{
+        width:270px;
+        height:210px; 
+    }
+    #dropdown-content{
+        width:80%;
+    }
+    #movie-image img{
+        width:220px;
+        margin-bottom:15px;
+        margin-right:0px;
+    }
+    #recommended-movie{
+        flex-direction: column;
+        align-items: center;
+        
+    }
+ } 

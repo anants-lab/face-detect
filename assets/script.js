@@ -1,6 +1,4 @@
-console.log("hello");
-
-const video = document.getElementById('video');
+var video = document.getElementById('video');
 
 class Queue
 {
@@ -65,16 +63,19 @@ function startVideo() {
     err => console.error(err)
   )
 }
-
-
-video.addEventListener('play', () => {
-  const canvas = faceapi.createCanvasFromMedia(video)
+var canvas;
+var displaySize;
+function vAction(){
+  canvas = faceapi.createCanvasFromMedia(video)
   document.getElementById('video-display').append(canvas)
-  const displaySize = { width: video.width, height: video.height }
+  displaySize={ width: video.offsetWidth, height: video.offsetHeight }
   faceapi.matchDimensions(canvas, displaySize)
   setInterval(async () => {
-    const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-    const resizedDetections = faceapi.resizeResults(detections, displaySize)
+    
+
+
+    var detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+    var resizedDetections = faceapi.resizeResults(detections, displaySize)
     //console.log(resizedDetections)
     if(resizedDetections.length>0){
     var expressions = resizedDetections[0].expressions.asSortedArray()
@@ -92,8 +93,26 @@ video.addEventListener('play', () => {
     faceapi.draw.drawDetections(canvas, resizedDetections)
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
     faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-  }, 100)
+  }, 50);
+}
+
+video.addEventListener('play', vAction );
+
+const mediaQuery = window.matchMedia('(max-width: 640px)');
+
+mediaQuery.addEventListener('change', event => {
+  video=document.getElementById('video');
+  displaySize={ width: video.offsetWidth, height: video.offsetHeight }
+  faceapi.matchDimensions(canvas, displaySize)
 });
+
+
+
+
+
+
+
+
 
 $("#suggest-btn").click(function(){
   let q=queue;

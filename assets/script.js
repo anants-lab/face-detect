@@ -91,6 +91,9 @@ mediaQuery.addEventListener('change', event => {
 
 
 $("#suggest-btn").click(function(){
+  $("#recommend-loader").css("display","block");
+  $("#dropdown-content").css("display","none");
+
   let q=queue;
   
   var count = {
@@ -112,17 +115,19 @@ $("#suggest-btn").click(function(){
       exp=curr_exp;
     }
   }
-
+  
 
   $.ajax({
     type:"GET",
     url:`/expression/${exp}`,
     success:function(data){
       let gen=JSON.parse(data.data.genres);
+      $("#recommend-loader").css("display","none");
       let str="";
       for(g of gen){
         str+=g.name+" | ";
       }
+      
       $("#movie-image img").attr("src",data.data.poster);
       $("#movie-desc-head").text(data.data.original_title+` (${data.data.release_date.slice(0,4)})`);
       $("#movie-desc-rating").html(`<i class='fas fa-star'></i> ${data.data.vote_average}`);
